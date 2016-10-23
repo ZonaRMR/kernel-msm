@@ -352,6 +352,8 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 		"gpio-keys report %s [%#x] type %#x state %s\n",
 		button->desc, button->code, type, state ? "On" : "Off");
 	input_sync(input);
+
+	oem_check_force_dump_key(button->code,state);
 }
 
 static void gpio_keys_gpio_work_func(struct work_struct *work)
